@@ -353,6 +353,8 @@ em.it{font-style:italic;color:var(--gold)}
 /* cases */
 #s-cases .frame{gap:calc(var(--u)*1.1)}
 .case-legend .team-label{color:#FF9F6E}
+.case-legend .team-entry{display:block}
+@media (min-width:901px) and (min-aspect-ratio:4/3){#s-cases{--u:min(.85vw, 1.51vh)}}
 .case-legend{font-size:calc(var(--u)*1.05);border-top:1px solid var(--line);padding-top:calc(var(--u)*1);line-height:1.5}
 .cases{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*1.2)}
 .case{cursor:pointer;text-align:left;background:var(--surface);border:1px solid var(--hair);border-radius:calc(var(--u)*1.2);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
@@ -986,7 +988,7 @@ $("#cases").innerHTML = CASES.map((c,i) => `
 $("#matrix").innerHTML = `<thead><tr><th scope="col">Case</th>${FRENTES.map(f=>`<th scope="col" data-col="${f.n}"><b>${f.n}</b>${esc(f.verbo)}</th>`).join("")}</tr></thead>
   <tbody>${CASES.map(c=>`<tr><td data-case="${c.id}">${esc(c.nome)}</td>${FRENTES.map(f=>`<td data-col="${f.n}">${c.eq.includes(f.n)?'<span class="m" title="atuou"></span>':'<span class="x">–</span>'}</td>`).join("")}</tr>`).join("")}</tbody>`;
 
-$("#cases-legend").innerHTML = `<b>Equipes participantes (números destacados):</b> ${FRENTES.map(f=>`<b class="team-label">${f.n} ${esc(f.n==="02"?"Imaginar":f.verbo)}:</b> ${esc(f.nome)}`).join("; ")}.`;
+$("#cases-legend").innerHTML = `<b>Equipes participantes (números destacados):</b>${FRENTES.map(f=>`<span class="team-entry"><b class="team-label">${f.n} ${esc(f.n==="02"?"Imaginar":f.verbo)}:</b> ${esc(f.nome)}</span>`).join("")}`;
 
 let filtro = -1;
 function renderSols(){
